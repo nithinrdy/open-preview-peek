@@ -1,0 +1,16 @@
+{
+  "name": "Open Preview-Peek",
+  "description": "Instantly view Open Graph Previews of the link to the webpage you're currently on.",
+  "version": "0.0.1",
+  "manifest_version": 3,
+  "action": {
+    "default_popup": "index.html"
+  },
+  "permissions": ["storage", "activeTab"],
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["scripts/content.js"]
+    }
+  ]
+}
