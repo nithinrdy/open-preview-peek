@@ -1,9 +1,11 @@
-import { Footer } from "@src/components/footer";
+import { FooterToolbar } from "@src/modules/footer-toolbar";
+import { Preview } from "@src/modules/preview";
 
 function App() {
   return (
     <div className="w-extension-body bg-background h-20 flex flex-col">
-      <Footer />
+      <Preview />
+      <FooterToolbar />
     </div>
   );
 }

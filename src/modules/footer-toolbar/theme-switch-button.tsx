@@ -1,7 +1,7 @@
 import { DarkModeIcon } from "@src/icons/dark-mode";
 import { LightModeIcon } from "@src/icons/light-mode";
 
-import { IconButton } from "@src/components/shared/icon-button";
+import { IconButton } from "@src/components/icon-button";
 
 import { UseThemeSwitch } from "@src/hooks/use-theme-switch";
 
