@@ -4,8 +4,12 @@ import {
   saveToChromeStorage,
 } from "@src/utils/chrome-storage";
 
-export const UseThemeSwitch = () => {
+export const useThemeSwitch = () => {
   const [activeTheme, setActiveTheme] = useState<"light" | "dark">("dark");
+
+  const applyThemeToDocument = (theme: "light" | "dark") => {
+    document.documentElement.setAttribute("data-theme", theme);
+  };
 
   useEffect(() => {
     (async () => {
@@ -19,10 +23,6 @@ export const UseThemeSwitch = () => {
       }
     })();
   }, []);
-
-  const applyThemeToDocument = (theme: "light" | "dark") => {
-    document.documentElement.setAttribute("data-theme", theme);
-  };
 
   const toggleTheme = () => {
     setActiveTheme((t) => {

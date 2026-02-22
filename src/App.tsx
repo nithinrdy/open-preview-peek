@@ -3,7 +3,7 @@ import { Preview } from "@src/modules/preview";
 
 function App() {
   return (
-    <div className="w-extension-body bg-background h-20 flex flex-col">
+    <div className="w-extension-body bg-background flex flex-col">
       <Preview />
       <FooterToolbar />
     </div>
