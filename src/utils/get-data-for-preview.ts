@@ -13,7 +13,7 @@ export const getDataForPreview = async (): Promise<PreviewData | null> => {
     : undefined;
   if (!scriptResponse) return null;
 
-  const { metaTags, faviconIcoUrl } = scriptResponse;
+  const { metaTags, faviconIcoUrl, url } = scriptResponse;
   const ogUrl = metaTags.find((t) => t.property === "og:url")?.content;
   const domain = (
     ogUrl?.startsWith("https://")
@@ -26,6 +26,7 @@ export const getDataForPreview = async (): Promise<PreviewData | null> => {
   return {
     domain,
     faviconIcoUrl,
+    fullUrl: url,
     title: metaTags.find((t) => t.property === "og:title")?.content,
     description: metaTags.find((t) => t.property === "og:description")?.content,
     imageUrl: metaTags.find((t) => t.property === "og:image")?.content,

@@ -57,6 +57,8 @@ chrome.runtime.onMessage.addListener(
       sendResponse({
         metaTags: metaTagsOfInterest,
         faviconIcoUrl: `${window.location.origin}/favicon.ico`,
+        origin: window.location.origin,
+        url: window.location.href,
         // faviconUrlFromLinkTags: faviconUrlFromLinkTags?.startsWith("/")
         //   ? `${origin}${faviconUrlFromLinkTags}`
         //   : faviconUrlFromLinkTags,

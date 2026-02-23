@@ -14,13 +14,16 @@
   --radius-medium: 8px;
 
   /* Slack */
-  --text-slack-domain: 15px;
-  --text-slack-title: 15px;
+  --text-slack-primary: 15px;
 
   /* Discord */
-  --text-discord-site-name: 12px;
-  --text-discord-title: 16px;
-  --text-discord-description: 14px;
+  --text-discord-tertiary: 12px;
+  --text-discord-primary: 16px;
+  --text-discord-secondary: 14px;
+
+  /* Whatsapp */
+  --text-whatsapp-secondary: 12px;
+  --text-whatsapp-primary: 16px;
 
   --color-content-primary: var(--color-zinc-700);
   --color-content-secondary: var(--color-zinc-600);
@@ -40,6 +43,11 @@
   --color-discord-left-edge: #d9d9dc;
   --color-discord-background: #ffffff;
   --color-discord-title-text: #0074e3;
+
+  /* Whatsapp */
+  --color-whatsapp-background: #d5f3ce;
+  --color-whatsapp-faded-text: rgba(0, 0, 0, 0.6);
+  --color-whatsapp-sharp-text: #000000;
 }
 
 html[data-theme="dark"],
@@ -62,4 +70,9 @@ div[data-theme="dark"] {
   --color-discord-left-edge: #3a3a40;
   --color-discord-background: #242429;
   --color-discord-title-text: #4d96ee;
+
+  /* Whatsapp */
+  --color-whatsapp-background: #103d2c;
+  --color-whatsapp-faded-text: rgba(255, 255, 255, 0.6);
+  --color-whatsapp-sharp-text: #ffffff;
 }

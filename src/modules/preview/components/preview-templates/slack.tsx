@@ -18,7 +18,7 @@ export const SlackPreview = ({
     <div className="w-[600px] max-w-[600px] flex bg-slack-background">
       <div className="min-h-full min-w-1 rounded-lg bg-slack-left-edge" />
       <div className="grow px-3 py-1 flex flex-col gap-1">
-        <span className="flex gap-2 items-center text-slack-domain-text text-slack-domain">
+        <span className="flex gap-2 items-center text-slack-domain-text text-slack-primary">
           {faviconIcoUrl && (
             <img
               className="h-4 w-4"
@@ -30,17 +30,22 @@ export const SlackPreview = ({
           )}
           <span className="max-w-[360px] font-[900] truncate">{domain}</span>
         </span>
-        <p className="max-w-[360px] font-[700] text-slack-title-text text-slack-title truncate">
+        <p className="max-w-[360px] font-[700] text-slack-title-text text-slack-primary truncate">
           {title}
         </p>
         <p className="text-content-primary line-clamp-3 text-ellipsis overflow-hidden">
           {description}
         </p>
-        <img
-          className="max-h-[240px] max-w-[360px] rounded-lg mt-1"
-          style={{ objectFit: "contain", objectPosition: "left" }}
-          src={imageUrl}
-        />
+        {imageUrl && (
+          <img
+            className="max-h-[240px] max-w-[360px] rounded-lg mt-1"
+            style={{ objectFit: "contain", objectPosition: "left" }}
+            src={imageUrl}
+            onError={(e) => {
+              (e.target as HTMLImageElement).style.display = "none";
+            }}
+          />
+        )}
       </div>
     </div>
   );

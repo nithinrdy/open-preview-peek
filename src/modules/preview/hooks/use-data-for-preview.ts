@@ -10,5 +10,9 @@ export const useDataForPreview = () => {
   };
   useEffect(refresh, []);
 
-  return { previewData, refresh };
+  return {
+    previewData,
+    // Wouldn't exactly need to refresh... ever, so just leaving this commented out.
+    // refresh
+  };
 };
