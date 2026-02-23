@@ -1,8 +1,8 @@
-import type { PreviewTemplateProps } from "@src/modules/preview/types";
+import type { PreviewData } from "@src/modules/preview/types";
 import { MessageType, type PreviewDataResponse } from "@src/types/message";
 
 export const getDataForPreview =
-  async (): Promise<PreviewTemplateProps | null> => {
+  async (): Promise<PreviewData | null> => {
     const currentTabId = (
       await chrome.tabs.query({ active: true, currentWindow: true })
     )[0].id;
@@ -31,5 +31,6 @@ export const getDataForPreview =
       description: metaTags.find((t) => t.property === "og:description")
         ?.content,
       imageUrl: metaTags.find((t) => t.property === "og:image")?.content,
+      siteName: metaTags.find((t) => t.property === "og:site_name")?.content,
     };
   };

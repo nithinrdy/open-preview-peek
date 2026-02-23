@@ -1,4 +1,10 @@
-import type { PreviewTemplateProps } from "../../types";
+export type SlackPreviewProps = Partial<{
+  domain: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  faviconUrl: string;
+}>;
 
 export const SlackPreview = ({
   domain,
@@ -6,21 +12,19 @@ export const SlackPreview = ({
   description,
   faviconUrl,
   imageUrl,
-}: PreviewTemplateProps) => {
+}: SlackPreviewProps) => {
   return (
     <div className="w-[600px] max-w-[600px] flex bg-slack-background">
       <div className="min-h-full min-w-1 rounded-lg bg-slack-left-edge" />
       <div className="grow px-3 py-1 flex flex-col gap-1">
         <span className="flex gap-2 items-center text-slack-domain-text text-slack-domain">
           {faviconUrl && <img className="h-4 w-4" src={faviconUrl} />}
-          <span className="max-w-[360px] font-[900] whitespace-nowrap text-ellipsis overflow-hidden">
-            {domain}
-          </span>
+          <span className="max-w-[360px] font-[900] truncate">{domain}</span>
         </span>
-        <p className="max-w-[360px] font-[700] whitespace-nowrap text-ellipsis overflow-hidden text-slack-title-text text-slack-title">
+        <p className="max-w-[360px] font-[700] text-slack-title-text text-slack-title truncate">
           {title}
         </p>
-        <p className="text-content-primary text-ellipsis overflow-hidden line-clamp-3">
+        <p className="text-content-primary line-clamp-3 text-ellipsis overflow-hidden">
           {description}
         </p>
         <img
