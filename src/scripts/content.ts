@@ -27,7 +27,7 @@ chrome.runtime.onMessage.addListener(
   (message, sender, sendResponse: (response: PreviewDataResponse) => void) => {
     if (message.type === MessageType.RequestPreviewData) {
       const metaTags = document.querySelectorAll("meta");
-      const linkTags = document.querySelectorAll("link");
+      // const linkTags = document.querySelectorAll("link");
       // const titleTag = document.querySelector("title"); // Slack can fall back onto this...?
 
       const metaTagsOfInterest = Array.from(metaTags ?? [])
@@ -41,24 +41,25 @@ chrome.runtime.onMessage.addListener(
           content: meta.getAttribute("content") ?? undefined,
         }));
 
-      const faviconUrl =
-        Array.from(linkTags ?? [])
-          .find((l) => l.getAttribute("rel") === "icon")
-          ?.getAttribute("href") ??
-        Array.from(linkTags ?? [])
-          .find(
-            (l) =>
-              l.getAttribute("rel") === "shortcut icon" ||
-              l.getAttribute("rel") === "alternate icon",
-          )
-          ?.getAttribute("href") ??
-        "/favicon.ico";
+      // const faviconUrlFromLinkTags =
+      //   Array.from(linkTags ?? [])
+      //     .find((l) => l.getAttribute("rel") === "icon")
+      //     ?.getAttribute("href") ??
+      //   Array.from(linkTags ?? [])
+      //     .find(
+      //       (l) =>
+      //         l.getAttribute("rel") === "shortcut icon" ||
+      //         l.getAttribute("rel") === "alternate icon",
+      //     )
+      //     ?.getAttribute("href") ??
+      //   undefined;
 
       sendResponse({
         metaTags: metaTagsOfInterest,
-        faviconUrl: faviconUrl?.startsWith("/")
-          ? `${window.location.origin}${faviconUrl}`
-          : faviconUrl,
+        faviconIcoUrl: `${window.location.origin}/favicon.ico`,
+        // faviconUrlFromLinkTags: faviconUrlFromLinkTags?.startsWith("/")
+        //   ? `${origin}${faviconUrlFromLinkTags}`
+        //   : faviconUrlFromLinkTags,
       });
 
       // Works around potential CORS issues (or overkill?)

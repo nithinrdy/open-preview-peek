@@ -7,6 +7,9 @@ export type PreviewDataResponse = {
     property?: string;
     content?: string;
   }[];
-  faviconUrl?: string | undefined;
+  /** The Favicon could be specified within the `<head>` tags as one or more `<link>` tag(s), or be located at `{origin}/favicon.ico`. This comes from the former. */
+  faviconUrlFromLinkTags?: string | undefined;
+  /** The Favicon could be specified within the `<head>` tags as one or more `<link>` tag(s), or be located at `{origin}/favicon.ico`. This comes from the latter. */
+  faviconIcoUrl?: string | undefined;
   // ogImageBase64?: string | undefined;
 };
