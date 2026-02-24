@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+.font-rajdhani {
+  font-family: "Rajdhani", sans-serif;
+  font-style: normal;
+}
+
 @theme {
   --width-extension-body: 640px;
   --height-button: 28px;

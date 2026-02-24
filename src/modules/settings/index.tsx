@@ -19,7 +19,7 @@ export const Settings = () => {
         <div className="flex items-center justify-between gap-4">
           <label
             htmlFor="rememberLastSelectedPreview"
-            className="font-[700] text-content-primary text-xl select-none"
+            className="font-rajdhani font-[600] text-content-primary text-xl select-none"
           >
             Remember last selected preview
           </label>
