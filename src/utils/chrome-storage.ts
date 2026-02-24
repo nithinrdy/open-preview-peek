@@ -1,4 +1,12 @@
-const saveToChromeStorage = async (key: string, value: any) => {
+import type {
+  StorageKeys,
+  ChromeStorageValue,
+} from "@src/types/chrome-storage";
+
+const saveToChromeStorage = async (
+  key: StorageKeys,
+  value: ChromeStorageValue,
+) => {
   try {
     await chrome.storage.local.set({ [key]: value });
     console.log(`Saved ${key} to Chrome storage.`);
@@ -7,7 +15,7 @@ const saveToChromeStorage = async (key: string, value: any) => {
   }
 };
 
-const getFromChromeStorage = async (key: string): Promise<any> => {
+const getFromChromeStorage = async <T>(key: StorageKeys): Promise<T | null> => {
   try {
     const result = await chrome.storage.local.get(key);
     return result[key];

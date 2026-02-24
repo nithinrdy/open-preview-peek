@@ -1,12 +1,17 @@
 import { FooterToolbar } from "@src/modules/footer-toolbar";
 import { Preview } from "@src/modules/preview";
+import { SettingsProvider } from "./providers/settings";
+import { Settings } from "./modules/settings";
 
 function App() {
   return (
-    <div className="w-extension-body bg-background flex flex-col">
-      <Preview />
-      <FooterToolbar />
-    </div>
+    <SettingsProvider>
+      <div className="relative w-extension-body bg-background flex flex-col transition-colors duration-500">
+        <Preview />
+        <Settings />
+        <FooterToolbar />
+      </div>
+    </SettingsProvider>
   );
 }
 
