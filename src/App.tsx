@@ -6,7 +6,7 @@ import { Settings } from "./modules/settings";
 function App() {
   return (
     <SettingsProvider>
-      <div className="relative w-extension-body bg-background flex flex-col transition-colors duration-500">
+      <div className="relative w-extension-body min-h-100 bg-background flex flex-col transition-colors duration-500">
         <Preview />
         <Settings />
         <FooterToolbar />

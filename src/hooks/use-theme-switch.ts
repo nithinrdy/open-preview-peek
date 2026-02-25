@@ -7,12 +7,12 @@ import {
   StorageKeys,
   type ChromeStorageThemeValue,
 } from "@src/types/chrome-storage";
-import type { Themes } from "@src/modules/footer-toolbar/types";
+import type { Theme } from "@src/modules/footer-toolbar/types";
 
 export const useThemeSwitch = () => {
-  const [activeTheme, setActiveTheme] = useState<Themes>("dark");
+  const [activeTheme, setActiveTheme] = useState<Theme>("dark");
 
-  const applyThemeToDocument = (theme: Themes) => {
+  const applyThemeToDocument = (theme: Theme) => {
     document.documentElement.setAttribute("data-theme", theme);
   };
 

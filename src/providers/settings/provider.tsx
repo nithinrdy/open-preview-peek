@@ -10,11 +10,12 @@ import {
   StorageKeys,
   type ChromeStorageSettingsValue,
 } from "@src/types/chrome-storage";
+import { DEFAULT_SETTINGS } from "@src/modules/settings/constants";
 import { SettingsContext } from "./context";
 
 const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
   const [settingsPanelOpen, setSettingsPanelOpen] = useState(false);
-  const [settings, setSettings] = useState<Settings>({});
+  const [settings, setSettings] = useState<Settings | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -26,13 +27,17 @@ const SettingsProvider = ({ children }: { children: React.ReactNode }) => {
         ? tryJsonParse<Settings>(stringifiedSettings)
         : null;
 
-      setSettings((prev) => ({ ...prev, ...parsedSettings }));
+      setSettings((prev) => ({
+        ...DEFAULT_SETTINGS,
+        ...prev,
+        ...parsedSettings,
+      }));
     })();
   }, []);
 
-  const updateSettings = (newSettings: Settings) => {
+  const updateSettings = (newSettings: Partial<Settings>) => {
     setSettings((prev) => {
-      const updatedSettings = { ...prev, ...newSettings };
+      const updatedSettings = { ...DEFAULT_SETTINGS, ...prev, ...newSettings };
       saveToChromeStorage(
         StorageKeys.SETTINGS,
         JSON.stringify(updatedSettings),

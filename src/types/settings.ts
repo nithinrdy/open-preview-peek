@@ -1,3 +1,4 @@
-export type Settings = Partial<{
+export type Settings = {
   rememberLastSelectedPreview: boolean;
-}>;
+  enableHotkeys: boolean;
+};

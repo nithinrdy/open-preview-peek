@@ -9,6 +9,7 @@ import {
   type ChromeStorageLastSelectedPreviewValue,
 } from "@src/types/chrome-storage";
 import { SettingsContext } from "@src/providers/settings";
+
 import { SUPPORTED_PREVIEWS } from "../constants";
 import type { PreviewKeys } from "../types";
 
@@ -25,15 +26,14 @@ export const UsePreviewSelect = () => {
           StorageKeys.LAST_SELECTED_PREVIEW,
         );
       if (
-        // Name makes it sound like this check should happen when setting, but from a user POV this is more intuitive ig.
-        settings.rememberLastSelectedPreview &&
+        settings?.rememberLastSelectedPreview &&
         storedSelection &&
         SUPPORTED_PREVIEWS.some((p) => p.id === storedSelection)
       ) {
         setSelected(storedSelection);
       }
     })();
-  }, [settings.rememberLastSelectedPreview]);
+  }, [settings?.rememberLastSelectedPreview]);
 
   const saveSelection = (preview: PreviewKeys) => {
     setSelected(() => {
