@@ -16,7 +16,7 @@ export const ThemeSwitchButton = () => {
         HotkeyConstituentKey.SHIFT,
         HotkeyConstituentKey.ARROWDOWN,
       ],
-      onMatch: () => toggleTheme(),
+      onMatch: toggleTheme,
     },
   });
 

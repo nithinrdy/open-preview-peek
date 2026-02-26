@@ -21,6 +21,10 @@
   /* Slack */
   --text-slack-primary: 15px;
 
+  /* Linkedin */
+  --text-linkedin-primary: 16px;
+  --text-linkedin-secondary: 12px;
+
   /* Discord */
   --text-discord-tertiary: 12px;
   --text-discord-primary: 16px;
@@ -43,6 +47,12 @@
   --color-slack-background: rgba(255, 255, 255, 1);
   --color-slack-domain-text: rgba(29, 28, 29, 1);
   --color-slack-title-text: rgba(18, 100, 163, 1);
+
+  /* Linkedin */
+  --color-linkedin-background: #ffffff;
+  --color-linkedin-shadow: rgba(0, 0, 0, 0.2);
+  --color-linkedin-title-text: #000000;
+  --color-linkedin-domain-text: rgba(0, 0, 0, 0.6);
 
   /* Discord */
   --color-discord-subtle-border: #e2e2e4;
@@ -77,6 +87,12 @@ div[data-theme="dark"] {
   --color-discord-left-edge: #3a3a40;
   --color-discord-background: #242429;
   --color-discord-title-text: #4d96ee;
+
+  /* Linkedin */
+  --color-linkedin-background: #38434f;
+  --color-linkedin-shadow: none;
+  --color-linkedin-title-text: #e1e2e4;
+  --color-linkedin-domain-text: rgba(255, 255, 255, 0.6);
 
   /* Whatsapp */
   --color-whatsapp-background: #103d2c;

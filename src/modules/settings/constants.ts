@@ -32,4 +32,8 @@ export const HOTKEY_GUIDE = [
     action: "Toggle Theme",
     hotkey: "Shift + Down",
   },
+  {
+    action: "Toggle Settings Panel",
+    hotkey: "Shift + Up",
+  },
 ];

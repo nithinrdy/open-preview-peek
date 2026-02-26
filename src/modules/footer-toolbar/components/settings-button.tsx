@@ -5,14 +5,27 @@ import { CloseIcon } from "@src/icons/close";
 
 import { IconButton } from "@src/components/icon-button";
 import { SettingsContext } from "@src/providers/settings";
+import { useHotkeys } from "@src/hooks/use-hotkeys";
+import { HotkeyConstituentKey } from "@src/types/hotkeys";
 
 export const SettingsButton = () => {
   const { settingsPanelOpen, setSettingsPanelOpen } =
     useContext(SettingsContext);
+  const toggleSettingsPanel = () => setSettingsPanelOpen((p) => !p);
+
+  useHotkeys({
+    toggleSettingsPanel: {
+      keyCombination: [
+        HotkeyConstituentKey.SHIFT,
+        HotkeyConstituentKey.ARROWUP,
+      ],
+      onMatch: toggleSettingsPanel,
+    },
+  });
 
   return (
     <IconButton
-      onClick={() => setSettingsPanelOpen((p) => !p)}
+      onClick={toggleSettingsPanel}
       icon={settingsPanelOpen ? CloseIcon : GearIcon}
       style={{
         ...(settingsPanelOpen && {

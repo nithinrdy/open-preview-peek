@@ -8,14 +8,17 @@ import {
   SlackPreview,
   DiscordPreview,
   WhatsappPreview,
+  LinkedInPreview,
 } from "./components/preview-templates";
 import { SUPPORTED_PREVIEWS } from "./constants";
+import { useContext } from "react";
+import { SettingsContext } from "@src/providers/settings";
 
 const PREVIEW_COMPONENTS = {
+  x: () => <></>,
   slack: SlackPreview,
   whatsapp: WhatsappPreview,
-  facebook: () => <></>,
-  linkedin: () => <></>,
+  linkedin: LinkedInPreview,
   discord: DiscordPreview,
 };
 
@@ -23,6 +26,7 @@ export const Preview = () => {
   const { selectedPreview, savePreviewSelection } = UsePreviewSelect();
   const { previewData } = useDataForPreview();
   const SelectedPreviewComponent = PREVIEW_COMPONENTS[selectedPreview];
+  const { settingsPanelOpen } = useContext(SettingsContext);
 
   useHotkeys({
     nextPreview: {
@@ -31,6 +35,8 @@ export const Preview = () => {
         HotkeyConstituentKey.ARROWRIGHT,
       ],
       onMatch: () => {
+        if (settingsPanelOpen) return;
+
         const currentIndex = SUPPORTED_PREVIEWS.findIndex(
           (p) => p.id === selectedPreview,
         );
@@ -46,6 +52,8 @@ export const Preview = () => {
         HotkeyConstituentKey.ARROWLEFT,
       ],
       onMatch: () => {
+        if (settingsPanelOpen) return;
+
         const currentIndex = SUPPORTED_PREVIEWS.findIndex(
           (p) => p.id === selectedPreview,
         );
