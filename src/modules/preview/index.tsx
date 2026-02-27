@@ -11,13 +11,14 @@ import {
   LinkedInPreview,
   CodePreview,
   PreviewError,
+  XPreview,
 } from "./components/preview-templates";
 import { SUPPORTED_PREVIEWS } from "./constants";
 import { useContext } from "react";
 import { SettingsContext } from "@src/providers/settings";
 
 const PREVIEW_COMPONENTS = {
-  x: () => <></>,
+  x: XPreview,
   facebook: () => <></>,
   slack: SlackPreview,
   whatsapp: WhatsappPreview,
@@ -79,9 +80,9 @@ export const Preview = () => {
       />
       {typeof previewData === "string" ? (
         <PreviewError error={previewData} />
-      ) : (
+      ) : typeof previewData !== "undefined" ? (
         <SelectedPreviewComponent {...previewData} />
-      )}
+      ) : null}
     </div>
   );
 };

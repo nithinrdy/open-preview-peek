@@ -13,7 +13,7 @@ chrome.runtime.onMessage.addListener(
 
       sendResponse({
         ...Array.from(metaTags).reduce<
-          Omit<PreviewDataResponse, "faviconIcoUrl">
+          Omit<PreviewDataResponse, "faviconIcoUrl" | "url">
         >((acc, meta) => {
           const property = meta.getAttribute("property");
           const name = meta.getAttribute("name");
@@ -34,6 +34,7 @@ chrome.runtime.onMessage.addListener(
           return acc;
         }, {}),
         faviconIcoUrl: `${window.location.origin}/favicon.ico`,
+        url: window.location.href,
       });
 
       // Works around potential CORS issues (or overkill?)

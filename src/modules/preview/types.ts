@@ -12,5 +12,6 @@ type TwitterMetaNameKeys = (typeof MetaNamesForTwitter)[number];
 export type PreviewData = Partial<
   Record<OgMetaPropertyKeys, string> & Record<TwitterMetaNameKeys, string>
 > & {
-  faviconIcoUrl?: string;
+  faviconIcoUrl: string;
+  url: string;
 };

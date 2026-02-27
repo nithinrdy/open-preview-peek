@@ -16,7 +16,7 @@ export const WhatsappPreview = ({
   const domain = getDomainFromOgUrl(ogUrl);
 
   return (
-    <div className="w-[330px] max-w-[330px] flex flex-col rounded-lg bg-whatsapp-background">
+    <div className="w-[330px] max-w-[330px] flex flex-col rounded-lg bg-white">
       {imageUrl && (
         <img
           className="max-h-[240px] max-w-full rounded-t-lg"
@@ -27,7 +27,7 @@ export const WhatsappPreview = ({
           }}
         />
       )}
-      <div className="px-2.5 py-1.5 flex flex-col gap-1">
+      <div className="px-2.5 py-1.5 flex flex-col gap-1 bg-whatsapp-background">
         <p className="font-[600] text-whatsapp-primary text-whatsapp-sharp-text truncate">
           {title ?? domain}
         </p>

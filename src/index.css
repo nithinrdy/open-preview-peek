@@ -18,6 +18,10 @@
   --height-button: 28px;
   --radius-medium: 8px;
 
+  /* X */
+  --text-x-large-primary: 12px;
+  --text-x-small-primary: 14px;
+
   /* Slack */
   --text-slack-primary: 15px;
 
@@ -44,6 +48,14 @@
   --color-button-hover: var(--color-zinc-300);
   --color-text-underline: var(--color-zinc-400);
   --color-settings-panel-background: rgba(255, 255, 255, 0.8);
+
+  /* X */
+  --color-x-large-title-background: rgba(0, 0, 0, 0.77);
+  --color-x-large-title-text: rgba(255, 255, 255, 1);
+  --color-x-large-from-text: rgb(83, 100, 113);
+  --color-x-small-border: rgb(207, 217, 222);
+  --color-x-small-title-text: rgb(15, 20, 25);
+  --color-x-small-secondary-text: rgb(83, 100, 113);
 
   /* Slack */
   --color-slack-left-edge: rgba(221, 221, 221, 1);
@@ -85,6 +97,14 @@ div[data-theme="dark"] {
   --color-button-hover: var(--color-zinc-600);
   --color-text-underline: var(--color-zinc-500);
   --color-settings-panel-background: rgba(0, 0, 0, 0.8);
+
+  /* X */
+  --color-x-large-title-background: rgba(0, 0, 0, 0.77);
+  --color-x-large-title-text: rgba(255, 255, 255, 1);
+  --color-x-large-from-text: rgb(113, 118, 123);
+  --color-x-small-border: rgb(47, 51, 54);
+  --color-x-small-title-text: rgb(231, 233, 234);
+  --color-x-small-secondary-text: rgb(113, 118, 123);
 
   /* Slack */
   --color-slack-left-edge: rgba(53, 55, 59, 1);
