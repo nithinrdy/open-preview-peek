@@ -22,6 +22,8 @@ export const ThemeSwitchButton = () => {
 
   return (
     <IconButton
+      id="toggle-theme-button"
+      tooltip="Toggle theme"
       onClick={() => toggleTheme()}
       icon={activeTheme === "light" ? LightModeIcon : DarkModeIcon}
     />

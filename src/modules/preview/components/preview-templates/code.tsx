@@ -1,15 +1,21 @@
+import { useEffect, useState } from "react";
+import { Tooltip } from "react-tooltip";
+
 import {
   MetaNamesForTwitter,
   MetaPropertiesForOpenGraph,
 } from "@src/utils/constants";
+import { copyToClipboard } from "@src/utils/copy-to-clipboard";
 import type { PreviewData } from "../../types";
-import { useEffect, useState } from "react";
 
 export const CodePreview = ({
   faviconIcoUrl,
   ...completePreviewData
 }: PreviewData) => {
   const [faviconLoadable, setFaviconLoadable] = useState(false);
+  const [justCopied, setJustCopied] = useState<"success" | "failure" | false>(
+    false,
+  );
 
   useEffect(() => {
     const imgElement = document.createElement("img");
@@ -32,22 +38,53 @@ export const CodePreview = ({
               : String(trueValue);
 
           return (
-            <tr key={key} className="border-b border-divider">
-              <td className="font-bold pr-2 text-right px-2 py-1">
-                <code>{key}</code>
-              </td>
-              <td className="italic px-2 py-1 break-all hover:underline underline-offset-3 decoration-text-underline cursor-pointer">
-                <code
-                  style={{
-                    ...(typeof trueValue === "undefined" && {
-                      color: "var(--color-red-400)",
-                    }),
+            <>
+              <tr key={key} className="border-b border-divider">
+                <td className="font-bold pr-2 text-right px-2 py-1">
+                  <code>{key}</code>
+                </td>
+                <td
+                  data-tooltip-id={`tooltip-${key}`}
+                  data-tooltip-content={
+                    justCopied === "success"
+                      ? "Copied!"
+                      : justCopied === "failure"
+                        ? "Failed to copy :("
+                        : "Click to copy"
+                  }
+                  className="italic px-2 py-1 break-all"
+                  onClick={() => {
+                    copyToClipboard(String(trueValue))
+                      .then(() => {
+                        setJustCopied("success");
+                        setTimeout(() => setJustCopied(false), 2000);
+                      })
+                      .catch(() => {
+                        setJustCopied("failure");
+                        setTimeout(() => setJustCopied(false), 2000);
+                      });
                   }}
                 >
-                  {prettyValue}
-                </code>
-              </td>
-            </tr>
+                  <code
+                    className={
+                      typeof trueValue !== "undefined"
+                        ? "hover:underline underline-offset-3 decoration-text-underline cursor-pointer"
+                        : ""
+                    }
+                    style={{
+                      ...(typeof trueValue === "undefined" && {
+                        color: "var(--color-red-400)",
+                      }),
+                    }}
+                  >
+                    {prettyValue}
+                  </code>
+                </td>
+              </tr>
+              {typeof trueValue !== "undefined" && (
+                <Tooltip id={`tooltip-${key}`} place="top" opacity={1} />
+              )}
+            </>
           );
         })}
         <tr className="border-b border-divider">

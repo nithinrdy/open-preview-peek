@@ -65,6 +65,10 @@
   --color-whatsapp-background: #d5f3ce;
   --color-whatsapp-faded-text: rgba(0, 0, 0, 0.6);
   --color-whatsapp-sharp-text: #000000;
+
+  /* React Tooltip overrides */
+  --rt-color-dark: var(--color-zinc-800);
+  --rt-color-white: var(--color-zinc-100);
 }
 
 html[data-theme="dark"],
@@ -100,4 +104,13 @@ div[data-theme="dark"] {
   --color-whatsapp-background: #103d2c;
   --color-whatsapp-faded-text: rgba(255, 255, 255, 0.6);
   --color-whatsapp-sharp-text: #ffffff;
+
+  /* React Tooltip overrides */
+  --rt-color-dark: var(--color-zinc-100);
+  --rt-color-white: var(--color-zinc-800);
+}
+
+.react-tooltip {
+  font-family: "Rajdhani", sans-serif !important;
+  font-size: 14px !important;
 }
