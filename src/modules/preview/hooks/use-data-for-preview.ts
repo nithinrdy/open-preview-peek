@@ -4,7 +4,10 @@ import type { PreviewData } from "@src/modules/preview/types";
 import { getDataForPreview } from "../utils/get-data-for-preview";
 
 export const useDataForPreview = () => {
-  const [previewData, setPreviewData] = useState<PreviewData | null>(null);
+  // string = an error message, undefined = still loading
+  const [previewData, setPreviewData] = useState<
+    PreviewData | string | undefined
+  >(undefined);
   const refresh = () => {
     (async () => setPreviewData(await getDataForPreview()))();
   };

@@ -10,6 +10,7 @@ import {
   WhatsappPreview,
   LinkedInPreview,
   CodePreview,
+  PreviewError,
 } from "./components/preview-templates";
 import { SUPPORTED_PREVIEWS } from "./constants";
 import { useContext } from "react";
@@ -76,8 +77,11 @@ export const Preview = () => {
         selected={selectedPreview}
         setSelected={savePreviewSelection}
       />
-      {/* TODO: Validate previewData before previewing */}
-      <SelectedPreviewComponent {...previewData} />
+      {typeof previewData === "string" ? (
+        <PreviewError error={previewData} />
+      ) : (
+        <SelectedPreviewComponent {...previewData} />
+      )}
     </div>
   );
 };

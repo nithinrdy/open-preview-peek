@@ -39,6 +39,8 @@
   --color-divider: var(--color-zinc-200);
   --color-background: var(--color-white);
   --color-background-2: var(--color-zinc-200);
+  --color-error-secondary: var(--color-red-100);
+  --color-error-primary: var(--color-red-500);
   --color-button-hover: var(--color-zinc-300);
   --color-text-underline: var(--color-zinc-400);
   --color-settings-panel-background: rgba(255, 255, 255, 0.8);
@@ -78,6 +80,8 @@ div[data-theme="dark"] {
   --color-divider: var(--color-zinc-700);
   --color-background: var(--color-black);
   --color-background-2: var(--color-zinc-700);
+  --color-error-secondary: var(--color-red-900);
+  --color-error-primary: var(--color-red-200);
   --color-button-hover: var(--color-zinc-600);
   --color-text-underline: var(--color-zinc-500);
   --color-settings-panel-background: rgba(0, 0, 0, 0.8);

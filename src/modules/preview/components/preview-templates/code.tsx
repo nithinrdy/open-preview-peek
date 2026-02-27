@@ -26,7 +26,7 @@ export const CodePreview = ({
 
   return (
     <div
-      className="max-w-[600px] max-h-100 overflow-y-scroll"
+      className="max-w-[600px] max-h-100 overflow-y-auto"
       style={{ scrollbarWidth: "thin" }}
     >
       <table className="table-auto border-collapse border border-divider text-content-primary">
@@ -52,7 +52,12 @@ export const CodePreview = ({
                         ? "Failed to copy :("
                         : "Click to copy"
                   }
-                  className="italic px-2 py-1 break-all"
+                  className={
+                    "italic px-2 py-1 break-all " +
+                    (typeof trueValue !== "undefined"
+                      ? "hover:underline underline-offset-3 decoration-text-underline cursor-pointer"
+                      : "")
+                  }
                   onClick={() => {
                     copyToClipboard(String(trueValue))
                       .then(() => {
@@ -66,11 +71,6 @@ export const CodePreview = ({
                   }}
                 >
                   <code
-                    className={
-                      typeof trueValue !== "undefined"
-                        ? "hover:underline underline-offset-3 decoration-text-underline cursor-pointer"
-                        : ""
-                    }
                     style={{
                       ...(typeof trueValue === "undefined" && {
                         color: "var(--color-red-400)",
