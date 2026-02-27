@@ -1,19 +1,23 @@
-export type SlackPreviewProps = Partial<{
-  domain: string;
-  title: string;
-  description: string;
-  imageUrl: string;
+import { getDomainFromOgUrl } from "../../utils/get-domain-from-og-url";
+
+type SlackPreviewProps = Partial<{
+  "og:url": string;
+  "og:title": string;
+  "og:description": string;
+  "og:image": string;
   /** The Favicon could be specified within the `<head>` tags as one or more `<link>` tag(s), or be located at `{origin}/favicon.ico`. Slack relies on the latter. */
   faviconIcoUrl: string;
 }>;
 
 export const SlackPreview = ({
-  domain,
-  title,
-  description,
+  "og:url": ogUrl,
+  "og:title": title,
+  "og:description": description,
+  "og:image": imageUrl,
   faviconIcoUrl,
-  imageUrl,
 }: SlackPreviewProps) => {
+  const domain = getDomainFromOgUrl(ogUrl);
+
   return (
     <div className="w-[600px] max-w-[600px] flex bg-slack-background">
       <div className="min-h-full min-w-1 rounded-lg bg-slack-left-edge" />

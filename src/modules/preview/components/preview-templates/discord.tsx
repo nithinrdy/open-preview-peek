@@ -1,15 +1,15 @@
-export type DiscordPreviewProps = Partial<{
-  siteName: string;
-  title: string;
-  description: string;
-  imageUrl: string;
+type DiscordPreviewProps = Partial<{
+  "og:site_name": string;
+  "og:title": string;
+  "og:description": string;
+  "og:image": string;
 }>;
 
 export const DiscordPreview = ({
-  siteName,
-  title,
-  description,
-  imageUrl,
+  "og:site_name": siteName,
+  "og:title": title,
+  "og:description": description,
+  "og:image": imageUrl,
 }: DiscordPreviewProps) => {
   return (
     <div className="w-[432px] max-w-[432px] border border-discord-subtle-border rounded-sm flex bg-discord-background">

@@ -1,27 +1,8 @@
 import { MessageType, type PreviewDataResponse } from "@src/types/message";
-
-const MetaPropertiesForOpenGraph = [
-  "og:title",
-  "og:type",
-  "og:description",
-  "og:url",
-  "og:site_name",
-  "og:image",
-  "og:image:type",
-  "og:image:width",
-  "og:image:height",
-  "og:image:alt",
-];
-
-// Not yet
-// const MetaNamesForTwitter = [
-//   "twitter:title",
-//   "twitter:description",
-//   "twitter:image",
-//   "twitter:image:type",
-//   "twitter:image:width",
-//   "twitter:image:height",
-// ];
+import {
+  MetaNamesForTwitter,
+  MetaPropertiesForOpenGraph,
+} from "@src/utils/constants";
 
 chrome.runtime.onMessage.addListener(
   (message, sender, sendResponse: (response: PreviewDataResponse) => void) => {
@@ -30,38 +11,29 @@ chrome.runtime.onMessage.addListener(
       // const linkTags = document.querySelectorAll("link");
       // const titleTag = document.querySelector("title"); // Slack can fall back onto this...?
 
-      const metaTagsOfInterest = Array.from(metaTags ?? [])
-        .filter((meta) =>
-          MetaPropertiesForOpenGraph.includes(
-            meta.getAttribute("property") ?? "",
-          ),
-        )
-        .map((meta) => ({
-          property: meta.getAttribute("property") ?? undefined,
-          content: meta.getAttribute("content") ?? undefined,
-        }));
-
-      // const faviconUrlFromLinkTags =
-      //   Array.from(linkTags ?? [])
-      //     .find((l) => l.getAttribute("rel") === "icon")
-      //     ?.getAttribute("href") ??
-      //   Array.from(linkTags ?? [])
-      //     .find(
-      //       (l) =>
-      //         l.getAttribute("rel") === "shortcut icon" ||
-      //         l.getAttribute("rel") === "alternate icon",
-      //     )
-      //     ?.getAttribute("href") ??
-      //   undefined;
-
       sendResponse({
-        metaTags: metaTagsOfInterest,
+        ...Array.from(metaTags).reduce<
+          Omit<PreviewDataResponse, "faviconIcoUrl">
+        >((acc, meta) => {
+          const property = meta.getAttribute("property");
+          const name = meta.getAttribute("name");
+
+          if (
+            property &&
+            MetaPropertiesForOpenGraph.some((p) => p === property) // .some() instead of .includes() because https://stackoverflow.com/q/53033854
+          ) {
+            acc[property as (typeof MetaPropertiesForOpenGraph)[number]] =
+              meta.getAttribute("content") ?? undefined;
+          }
+
+          if (name && MetaNamesForTwitter.some((p) => p === name)) {
+            acc[name as (typeof MetaNamesForTwitter)[number]] =
+              meta.getAttribute("content") ?? undefined;
+          }
+
+          return acc;
+        }, {}),
         faviconIcoUrl: `${window.location.origin}/favicon.ico`,
-        origin: window.location.origin,
-        url: window.location.href,
-        // faviconUrlFromLinkTags: faviconUrlFromLinkTags?.startsWith("/")
-        //   ? `${origin}${faviconUrlFromLinkTags}`
-        //   : faviconUrlFromLinkTags,
       });
 
       // Works around potential CORS issues (or overkill?)

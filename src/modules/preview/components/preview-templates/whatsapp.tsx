@@ -1,18 +1,20 @@
-export type WhatsappPreviewProps = Partial<{
-  fullUrl: string;
-  domain: string;
-  title: string;
-  description: string;
-  imageUrl: string;
+import { getDomainFromOgUrl } from "../../utils/get-domain-from-og-url";
+
+type WhatsappPreviewProps = Partial<{
+  "og:url": string;
+  "og:title": string;
+  "og:description": string;
+  "og:image": string;
 }>;
 
 export const WhatsappPreview = ({
-  fullUrl,
-  domain,
-  title,
-  description,
-  imageUrl,
+  "og:url": ogUrl,
+  "og:title": title,
+  "og:description": description,
+  "og:image": imageUrl,
 }: WhatsappPreviewProps) => {
+  const domain = getDomainFromOgUrl(ogUrl);
+
   return (
     <div className="w-[330px] max-w-[330px] flex flex-col rounded-lg bg-whatsapp-background">
       {imageUrl && (
@@ -30,7 +32,7 @@ export const WhatsappPreview = ({
           {title ?? domain}
         </p>
         <p className="text-whatsapp-sharp-text text-whatsapp-secondary line-clamp-2 text-ellipsis overflow-hidden">
-          {description ?? fullUrl}
+          {description ?? ogUrl}
         </p>
         <p className="text-whatsapp-faded-text text-whatsapp-secondary truncate">
           {domain}

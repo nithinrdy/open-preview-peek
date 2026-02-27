@@ -1,9 +1,16 @@
-import type { DiscordPreviewProps } from "./components/preview-templates/discord";
-import type { SlackPreviewProps } from "./components/preview-templates/slack";
-import type { WhatsappPreviewProps } from "./components/preview-templates/whatsapp";
+import {
+  MetaNamesForTwitter,
+  MetaPropertiesForOpenGraph,
+} from "@src/utils/constants";
 import type { SUPPORTED_PREVIEWS } from "./constants";
 
 export type PreviewKeys = (typeof SUPPORTED_PREVIEWS)[number]["id"];
-export type PreviewData = SlackPreviewProps &
-  DiscordPreviewProps &
-  WhatsappPreviewProps;
+
+type OgMetaPropertyKeys = (typeof MetaPropertiesForOpenGraph)[number];
+type TwitterMetaNameKeys = (typeof MetaNamesForTwitter)[number];
+
+export type PreviewData = Partial<
+  Record<OgMetaPropertyKeys, string> & Record<TwitterMetaNameKeys, string>
+> & {
+  faviconIcoUrl?: string;
+};

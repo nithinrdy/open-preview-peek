@@ -1,14 +1,18 @@
-export type LinkedInPreviewProps = Partial<{
-  domain: string;
-  title: string;
-  imageUrl: string;
+import { getDomainFromOgUrl } from "../../utils/get-domain-from-og-url";
+
+type LinkedInPreviewProps = Partial<{
+  "og:url": string;
+  "og:title": string;
+  "og:image": string;
 }>;
 
 export const LinkedInPreview = ({
-  domain,
-  title,
-  imageUrl,
+  "og:url": ogUrl,
+  "og:title": title,
+  "og:image": imageUrl,
 }: LinkedInPreviewProps) => {
+  const domain = getDomainFromOgUrl(ogUrl);
+
   return (
     <div
       className="w-[520px] min-w-[520px] flex flex-col rounded-xs bg-linkedin-background"

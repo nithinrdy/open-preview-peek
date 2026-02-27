@@ -9,6 +9,7 @@ import {
   DiscordPreview,
   WhatsappPreview,
   LinkedInPreview,
+  CodePreview,
 } from "./components/preview-templates";
 import { SUPPORTED_PREVIEWS } from "./constants";
 import { useContext } from "react";
@@ -16,10 +17,12 @@ import { SettingsContext } from "@src/providers/settings";
 
 const PREVIEW_COMPONENTS = {
   x: () => <></>,
+  facebook: () => <></>,
   slack: SlackPreview,
   whatsapp: WhatsappPreview,
   linkedin: LinkedInPreview,
   discord: DiscordPreview,
+  code: CodePreview,
 };
 
 export const Preview = () => {

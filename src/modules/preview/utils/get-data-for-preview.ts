@@ -11,25 +11,6 @@ export const getDataForPreview = async (): Promise<PreviewData | null> => {
         type: MessageType.RequestPreviewData,
       })) as PreviewDataResponse)
     : undefined;
-  if (!scriptResponse) return null;
 
-  const { metaTags, faviconIcoUrl, url } = scriptResponse;
-  const ogUrl = metaTags.find((t) => t.property === "og:url")?.content;
-  const domain = (
-    ogUrl?.startsWith("https://")
-      ? ogUrl.split("https://")[1]
-      : ogUrl?.startsWith("http://")
-        ? ogUrl.split("http://")[1]
-        : ogUrl
-  )?.split("/")[0];
-
-  return {
-    domain,
-    faviconIcoUrl,
-    fullUrl: url,
-    title: metaTags.find((t) => t.property === "og:title")?.content,
-    description: metaTags.find((t) => t.property === "og:description")?.content,
-    imageUrl: metaTags.find((t) => t.property === "og:image")?.content,
-    siteName: metaTags.find((t) => t.property === "og:site_name")?.content,
-  };
+  return scriptResponse ? scriptResponse : null;
 };
