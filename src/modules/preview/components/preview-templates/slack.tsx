@@ -21,7 +21,7 @@ export const SlackPreview = ({
   return (
     <div className="w-[600px] max-w-[600px] flex bg-slack-background">
       <div className="min-h-full min-w-1 rounded-lg bg-slack-left-edge" />
-      <div className="grow px-3 py-1 flex flex-col gap-1">
+      <div className="min-w-0 grow px-3 py-1 flex flex-col gap-1">
         <span className="flex gap-2 items-center text-slack-domain-text text-slack-primary">
           {faviconIcoUrl && (
             <img

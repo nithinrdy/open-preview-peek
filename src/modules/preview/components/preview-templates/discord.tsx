@@ -14,7 +14,7 @@ export const DiscordPreview = ({
   return (
     <div className="w-[432px] max-w-[432px] border border-discord-subtle-border rounded-sm flex bg-discord-background">
       <div className="min-h-full min-w-1 bg-discord-left-edge" />
-      <div className="grow px-[14px] pt-2 pb-4 flex flex-col gap-1">
+      <div className="min-w-0 grow px-[14px] pt-2 pb-4 flex flex-col gap-1">
         <span className="flex gap-2 items-center text-content-primary text-discord-tertiary">
           <span className="max-w-[360px] truncate">{siteName}</span>
         </span>

@@ -4,7 +4,16 @@
   "version": "0.0.1",
   "manifest_version": 3,
   "action": {
-    "default_popup": "index.html"
+    "default_popup": "index.html",
+    "default_title": "Open Preview-Peek",
+    "default_icon": {
+      "48": "48.png",
+      "128": "128.png"
+    }
+  },
+  "icons": {
+    "48": "48.png",
+    "128": "128.png"
   },
   "permissions": ["storage", "activeTab"],
   "content_scripts": [

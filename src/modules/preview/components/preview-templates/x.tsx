@@ -56,7 +56,7 @@ export const XPreview = ({
             className="w-[124px] min-w-[124px] border-r border-x-small-border object-contain object-center"
             src={imageUrl}
           />
-          <div className="grow flex flex-col justify-center p-2.5">
+          <div className="min-w-0 grow flex flex-col justify-center p-2.5">
             <span className="text-x-small-primary text-x-small-secondary-text truncate">
               {domain}
             </span>
