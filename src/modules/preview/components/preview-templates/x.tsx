@@ -1,5 +1,7 @@
 import { useState } from "react";
+
 import { getDomainFromOgUrl } from "../../utils/get-domain-from-og-url";
+import { PreviewError } from "./error";
 
 type XPreviewProps = {
   url: string;
@@ -32,6 +34,9 @@ export const XPreview = ({
   const imageUrl = twitterImage ?? ogImage;
   const domain = getDomainFromOgUrl(url);
 
+  if (!twitterCard)
+    return <PreviewError error="The 'twitter:card' meta tag is missing." />;
+
   return (
     <div className="flex flex-col gap-4">
       {cardType === "summary_large_image" ? (
@@ -42,8 +47,8 @@ export const XPreview = ({
               src={imageUrl}
               onError={() => setCardType("summary")}
             />
-            <span className="max-w-full absolute left-2.5 bottom-2.5 bg-x-large-title-background text-x-large-title-text text-x-large-primary px-2 py-1 truncate">
-              {title}
+            <span className="max-w-[90%] absolute left-2.5 bottom-2.5 bg-x-large-title-background text-x-large-title-text text-x-large-primary px-2 py-1 truncate">
+              {title || url}
             </span>
           </div>
           <span className="text-x-large-primary text-x-large-from-text">
@@ -53,7 +58,7 @@ export const XPreview = ({
       ) : (
         <div className="w-[568px] max-w-[568px] h-[124px] max-h-[124px] flex rounded-2xl border border-x-small-border">
           <img
-            className="w-[124px] min-w-[124px] border-r border-x-small-border object-contain object-center"
+            className="w-[124px] min-w-[124px] rounded-l-2xl border-r border-x-small-border object-contain object-center"
             src={imageUrl}
           />
           <div className="min-w-0 grow flex flex-col justify-center p-2.5">
@@ -61,7 +66,7 @@ export const XPreview = ({
               {domain}
             </span>
             <span className="text-x-small-primary text-x-small-title-text truncate">
-              {title}
+              {title || url}
             </span>
             <span className="text-x-small-primary text-x-small-secondary-text line-clamp-2 overflow-hidden text-ellipsis">
               {description}

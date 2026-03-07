@@ -1,6 +1,8 @@
 import { getDomainFromOgUrl } from "../../utils/get-domain-from-og-url";
+import { PreviewError } from "./error";
 
 type SlackPreviewProps = Partial<{
+  url: string;
   "og:url": string;
   "og:title": string;
   "og:description": string;
@@ -10,13 +12,16 @@ type SlackPreviewProps = Partial<{
 }>;
 
 export const SlackPreview = ({
+  url,
   "og:url": ogUrl,
   "og:title": title,
   "og:description": description,
   "og:image": imageUrl,
   faviconIcoUrl,
 }: SlackPreviewProps) => {
-  const domain = getDomainFromOgUrl(ogUrl);
+  const domain = getDomainFromOgUrl(ogUrl || url);
+
+  if (!title) return <PreviewError error="The og:title tag is missing." />;
 
   return (
     <div className="w-[600px] max-w-[600px] flex bg-slack-background">

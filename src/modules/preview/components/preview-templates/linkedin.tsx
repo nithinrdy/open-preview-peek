@@ -1,17 +1,22 @@
 import { getDomainFromOgUrl } from "../../utils/get-domain-from-og-url";
+import { PreviewError } from "./error";
 
 type LinkedInPreviewProps = Partial<{
+  url: string;
   "og:url": string;
   "og:title": string;
   "og:image": string;
 }>;
 
 export const LinkedInPreview = ({
+  url,
   "og:url": ogUrl,
   "og:title": title,
   "og:image": imageUrl,
 }: LinkedInPreviewProps) => {
-  const domain = getDomainFromOgUrl(ogUrl);
+  const domain = getDomainFromOgUrl(ogUrl ?? url);
+
+  if (!title) return <PreviewError error="The og:title tag is missing." />;
 
   return (
     <div

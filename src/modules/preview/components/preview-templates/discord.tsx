@@ -1,3 +1,5 @@
+import { PreviewError } from "./error";
+
 type DiscordPreviewProps = Partial<{
   "og:site_name": string;
   "og:title": string;
@@ -11,6 +13,8 @@ export const DiscordPreview = ({
   "og:description": description,
   "og:image": imageUrl,
 }: DiscordPreviewProps) => {
+  if (!title) return <PreviewError error="The og:title tag is missing." />;
+
   return (
     <div className="w-[432px] max-w-[432px] border border-discord-subtle-border rounded-sm flex bg-discord-background">
       <div className="min-h-full min-w-1 bg-discord-left-edge" />

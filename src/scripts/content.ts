@@ -11,6 +11,9 @@ chrome.runtime.onMessage.addListener(
       // const linkTags = document.querySelectorAll("link");
       // const titleTag = document.querySelector("title"); // Slack can fall back onto this...?
 
+      const url = new URL(window.location.href);
+      url.search = "";
+
       sendResponse({
         ...Array.from(metaTags).reduce<
           Omit<PreviewDataResponse, "faviconIcoUrl" | "url">
@@ -34,7 +37,7 @@ chrome.runtime.onMessage.addListener(
           return acc;
         }, {}),
         faviconIcoUrl: `${window.location.origin}/favicon.ico`,
-        url: window.location.href,
+        url: url.toString(),
       });
 
       // Works around potential CORS issues (or overkill?)
