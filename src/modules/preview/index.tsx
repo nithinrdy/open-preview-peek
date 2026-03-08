@@ -19,7 +19,7 @@ import { SettingsContext } from "@src/providers/settings";
 
 const PREVIEW_COMPONENTS = {
   x: XPreview,
-  facebook: () => <></>,
+  // facebook: () => <></>,
   slack: SlackPreview,
   whatsapp: WhatsappPreview,
   linkedin: LinkedInPreview,
