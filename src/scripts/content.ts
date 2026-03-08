@@ -27,11 +27,23 @@ chrome.runtime.onMessage.addListener(
           ) {
             acc[property as (typeof MetaPropertiesForOpenGraph)[number]] =
               meta.getAttribute("content") ?? undefined;
+
+            if (property === "og:image") {
+              if (acc[property]?.startsWith("/")) {
+                acc[property] = `${window.location.origin}${acc[property]}`;
+              }
+            }
           }
 
           if (name && MetaNamesForTwitter.some((p) => p === name)) {
             acc[name as (typeof MetaNamesForTwitter)[number]] =
               meta.getAttribute("content") ?? undefined;
+
+            if (name === "twitter:image") {
+              if (acc[name]?.startsWith("/")) {
+                acc[name] = `${window.location.origin}${acc[name]}`;
+              }
+            }
           }
 
           return acc;
