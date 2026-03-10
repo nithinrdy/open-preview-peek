@@ -16,6 +16,14 @@
     "48": "48.png",
     "128": "128.png"
   },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "@open-preview-peek.nithinrdy",
+      "data_collection_permissions": {
+        "required": ["none"]
+      }
+    }
+  },
   "permissions": ["storage", "activeTab"],
   "content_scripts": [
     {
