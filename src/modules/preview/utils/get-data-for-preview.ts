@@ -2,6 +2,7 @@ import DOMPurify from "dompurify";
 
 import type { PreviewData } from "@src/modules/preview/types";
 import { MessageType, type PreviewDataResponse } from "@src/types/message";
+import { INSECURE_URL_BLOCKED_MESSAGE } from "../constants";
 
 const sanitizePreviewData = (previewData: PreviewData | undefined) => {
   // Only allow https URLs (unless the origin is localhost, which is cool as well)
@@ -19,7 +20,7 @@ const sanitizePreviewData = (previewData: PreviewData | undefined) => {
         return str;
       }
 
-      return undefined;
+      return INSECURE_URL_BLOCKED_MESSAGE;
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (e) {
       return str; // Ignore if not a URL (sanitization alone should suffice)

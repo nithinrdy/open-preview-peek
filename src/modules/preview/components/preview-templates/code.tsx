@@ -7,6 +7,7 @@ import {
 } from "@src/utils/constants";
 import { copyToClipboard } from "@src/utils/copy-to-clipboard";
 import type { PreviewData } from "../../types";
+import { INSECURE_URL_BLOCKED_MESSAGE } from "../../constants";
 
 export const CodePreview = ({
   faviconIcoUrl,
@@ -24,6 +25,18 @@ export const CodePreview = ({
     imgElement.src = faviconIcoUrl ?? "";
   }, [faviconIcoUrl]);
 
+  const handleCopyValue = (value: string) => {
+    copyToClipboard(value)
+      .then(() => {
+        setJustCopied("success");
+        setTimeout(() => setJustCopied(false), 2000);
+      })
+      .catch(() => {
+        setJustCopied("failure");
+        setTimeout(() => setJustCopied(false), 2000);
+      });
+  };
+
   return (
     <div
       className="max-w-[600px] max-h-100 overflow-y-auto"
@@ -32,8 +45,14 @@ export const CodePreview = ({
       <table className="table-auto border-collapse border border-divider text-content-primary">
         {[...MetaPropertiesForOpenGraph, ...MetaNamesForTwitter].map((key) => {
           const trueValue = completePreviewData[key];
+
+          // if the value for this property is either undefined (missing), or has been blocked due to being an insecure URL
+          const isErrorValue =
+            typeof trueValue === "undefined" ||
+            trueValue === INSECURE_URL_BLOCKED_MESSAGE;
+
           const prettyValue =
-            typeof trueValue === "string"
+            !isErrorValue && typeof trueValue === "string"
               ? `"${trueValue}"`
               : String(trueValue);
 
@@ -54,34 +73,22 @@ export const CodePreview = ({
                   }
                   className={
                     "italic px-2 py-1 break-all " +
-                    (typeof trueValue !== "undefined"
+                    (!isErrorValue
                       ? "hover:underline underline-offset-3 decoration-text-underline cursor-pointer"
                       : "")
                   }
-                  onClick={() => {
-                    copyToClipboard(String(trueValue))
-                      .then(() => {
-                        setJustCopied("success");
-                        setTimeout(() => setJustCopied(false), 2000);
-                      })
-                      .catch(() => {
-                        setJustCopied("failure");
-                        setTimeout(() => setJustCopied(false), 2000);
-                      });
-                  }}
+                  onClick={() => handleCopyValue(String(trueValue))}
                 >
                   <code
                     style={{
-                      ...(typeof trueValue === "undefined" && {
-                        color: "var(--color-red-400)",
-                      }),
+                      ...(isErrorValue && { color: "var(--color-red-400)" }),
                     }}
                   >
                     {prettyValue}
                   </code>
                 </td>
               </tr>
-              {typeof trueValue !== "undefined" && (
+              {!isErrorValue && (
                 <Tooltip id={`tooltip-${key}`} place="top" opacity={1} />
               )}
             </>

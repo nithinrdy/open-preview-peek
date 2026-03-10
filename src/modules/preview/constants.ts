@@ -43,3 +43,5 @@ export const SUPPORTED_PREVIEWS = [
     icon: CodeIcon,
   },
 ];
+/** Message to be shown in the code preview tab, to indicate why (for example) images won't render in other previews in case of accidental insecure URLs */
+export const INSECURE_URL_BLOCKED_MESSAGE = "INSECURE_URL_BLOCKED_BY_EXTENSION";
