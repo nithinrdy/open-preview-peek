@@ -3,12 +3,38 @@ import DOMPurify from "dompurify";
 import type { PreviewData } from "@src/modules/preview/types";
 import { MessageType, type PreviewDataResponse } from "@src/types/message";
 
-const sanitizePreviewData = (previewData: PreviewData | undefined) =>
-  previewData
+const sanitizePreviewData = (previewData: PreviewData | undefined) => {
+  // Only allow https URLs (unless the origin is localhost, which is cool as well)
+  const omitIfNeitherHttpsNorLocalhost = (
+    str: string | undefined,
+  ): string | undefined => {
+    if (!str) return str;
+
+    try {
+      const url = new URL(str);
+      if (
+        url.protocol === "https:" ||
+        ["localhost", "127.0.0.1"].includes(url.hostname)
+      ) {
+        return str;
+      }
+
+      return undefined;
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    } catch (e) {
+      return str; // Ignore if not a URL (sanitization alone should suffice)
+    }
+  };
+
+  return previewData
     ? (Object.fromEntries(
-        Object.entries(previewData).map(([k, v]) => [k, DOMPurify.sanitize(v)]),
+        Object.entries(previewData).map(([k, v]) => [
+          k,
+          omitIfNeitherHttpsNorLocalhost(DOMPurify.sanitize(v)),
+        ]),
       ) as PreviewData)
     : undefined;
+};
 
 export const getDataForPreview = async (): Promise<PreviewData | string> => {
   try {
