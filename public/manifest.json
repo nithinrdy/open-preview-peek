@@ -1,20 +1,20 @@
 {
   "name": "Open Preview-Peek",
-  "description": "Instantly view Open Graph Previews of the link to the webpage you're currently on.",
-  "version": "0.0.1",
+  "description": "Instantly view Open Graph Previews of the link to the webpage you're currently on. Especially ideal for use when developing locally.",
+  "version": "1.0.0",
   "manifest_version": 3,
   "action": {
     "default_popup": "index.html",
     "default_title": "Open Preview-Peek",
     "default_icon": {
-      "48": "48.png",
-      "128": "128.png"
+      "48": "assets/48.png",
+      "128": "assets/128.png"
     }
   },
   "homepage_url": "https://github.com/nithinrdy/open-preview-peek",
   "icons": {
-    "48": "48.png",
-    "128": "128.png"
+    "48": "assets/48.png",
+    "128": "assets/128.png"
   },
   "browser_specific_settings": {
     "gecko": {

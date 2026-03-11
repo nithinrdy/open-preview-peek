@@ -1,4 +1,7 @@
+import { useContext } from "react";
+
 import { useHotkeys } from "@src/hooks/use-hotkeys";
+import { SettingsContext } from "@src/providers/settings";
 import { HotkeyConstituentKey } from "@src/types/hotkeys";
 
 import { useDataForPreview } from "./hooks/use-data-for-preview";
@@ -14,8 +17,6 @@ import {
   XPreview,
 } from "./components/preview-templates";
 import { SUPPORTED_PREVIEWS } from "./constants";
-import { useContext } from "react";
-import { SettingsContext } from "@src/providers/settings";
 
 const PREVIEW_COMPONENTS = {
   x: XPreview,

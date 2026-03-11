@@ -2,7 +2,7 @@
   "lockfileVersion": 1,
   "workspaces": {
     "": {
-      "name": "og-preview",
+      "name": "open-preview-peek",
       "dependencies": {
         "dompurify": "^3.3.2",
         "react": "^19.2.0",

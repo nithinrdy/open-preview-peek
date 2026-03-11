@@ -26,13 +26,16 @@ export const XPreview = ({
   "og:description": ogDescription,
   "og:image": ogImage,
 }: XPreviewProps) => {
-  const [cardType, setCardType] = useState<"summary" | "summary_large_image">(
-    twitterCard === "summary_large_image" ? "summary_large_image" : "summary",
-  );
   const title = twitterTitle ?? ogTitle ?? url;
   const description = twitterDescription ?? ogDescription;
   const imageUrl = twitterImage ?? ogImage;
   const domain = getDomainFromOgUrl(url);
+
+  const [cardType, setCardType] = useState<"summary" | "summary_large_image">(
+    twitterCard === "summary_large_image" && typeof imageUrl === "string"
+      ? "summary_large_image"
+      : "summary",
+  );
 
   if (!twitterCard)
     return <PreviewError error="The 'twitter:card' meta tag is missing." />;
@@ -74,22 +77,26 @@ export const XPreview = ({
           </div>
         </div>
       )}
-      <div className="font-rajdhani text-content-secondary text-[14px] max-w-[480px] self-center">
-        1. X previews fall back onto the corresponding OG tag(s) when{" "}
-        <code>twitter:title</code>, <code>twitter:description</code>, or{" "}
-        <code>twitter:image</code> are missing.
-        <br />
-        {["app", "player"].includes(twitterCard ?? "") && (
-          <>
-            <br />
-            2. Previews for pages with <code>twitter:card</code> set to{" "}
-            <code>app</code> or <code>player</code> aren't supported. You'll
-            still see a preview, but it's simply a preview of the{" "}
-            <code>summary</code> card as a fallback. The layout is identical,
-            but not the image, it's positioning, cropping, etc.
-          </>
-        )}
-      </div>
+      <Notes twitterCard={twitterCard} />
     </div>
   );
 };
+
+const Notes = ({ twitterCard }: { twitterCard: string }) => (
+  <div className="font-rajdhani text-content-secondary text-[14px] max-w-[480px] self-center">
+    1. X previews fall back onto the corresponding OG tag(s) when{" "}
+    <code>twitter:title</code>, <code>twitter:description</code>, or{" "}
+    <code>twitter:image</code> are missing.
+    <br />
+    {["app", "player"].includes(twitterCard ?? "") && (
+      <>
+        <br />
+        2. Previews for pages with <code>twitter:card</code> set to{" "}
+        <code>app</code> or <code>player</code> aren't supported. You'll still
+        see a preview, but it's simply a preview of the <code>summary</code>{" "}
+        card as a fallback. The layout is identical, but not the image, it's
+        positioning, cropping, etc.
+      </>
+    )}
+  </div>
+);
