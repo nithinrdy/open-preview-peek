@@ -1,5 +1,7 @@
 # Open Preview Peek
 
+![Open Preview Peek](./readme-assets/main.png)
+
 A browser extension that lets you quickly check how a webpage's Open Graph and Twitter metadata would be displayed when links to the page are posted on various social media platforms and messaging apps. Meant to help with web development and debugging, ideal for use when developing web apps locally. Similar to the Open Graph preview viewer offered by Vercel for app-deployments made on the Vercel platform, except this extension works on any webpage, including when you're developing locally.
 
 ## How it works
