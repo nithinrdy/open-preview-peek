@@ -16,3 +16,8 @@ export const MetaNamesForTwitter = [
   "twitter:image",
   "twitter:image:type",
 ] as const;
+
+export const MandatoryPreviewDataProperties = [
+  "faviconIcoUrl",
+  "url",
+] as const;

@@ -7,8 +7,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "build:content": "tsc && vite build --config vite.config.content.ts",
-    "watch": "chokidar 'src/**/*' 'public/manifest.json' 'package.json' 'tsconfig.*' 'vite.config.*' 'index.html' -c 'rm -rf dist/ && bun run build && bun run build:content' --initial"
+    "build:scripting": "tsc && vite build --config vite.config.content.ts && vite build --config vite.config.background.ts",
+    "watch": "chokidar 'src/**/*' 'public/manifest.json' 'package.json' 'tsconfig.*' 'vite.config.*' 'index.html' -c 'rm -rf dist/ && bun run build && bun run build:scripting' --initial"
   },
   "dependencies": {
     "dompurify": "^3.3.2",

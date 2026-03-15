@@ -1,7 +1,4 @@
-import type { PreviewData } from "@src/modules/preview/types";
-
 export enum MessageType {
-  RequestPreviewData = "requestPreviewData",
+  BackgroundScriptRequest = "backgroundScriptRequest",
+  ContentData = "contentData",
 }
-
-export type PreviewDataResponse = PreviewData;

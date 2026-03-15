@@ -9,12 +9,11 @@ export default defineConfig({
     emptyOutDir: false,
     rollupOptions: {
       input: {
-        content: "src/scripts/content.ts",
+        background: "src/scripts/background.ts",
       },
       output: {
         dir: "dist/scripts",
-        entryFileNames: "content.js",
-        format: "iife",
+        entryFileNames: "background.js",
       },
     },
   },

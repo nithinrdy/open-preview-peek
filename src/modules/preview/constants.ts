@@ -45,3 +45,7 @@ export const SUPPORTED_PREVIEWS = [
 ];
 /** Message to be shown in the code preview tab, to indicate why (for example) images won't render in other previews in case of accidental insecure URLs */
 export const INSECURE_URL_BLOCKED_MESSAGE = "INSECURE_URL_BLOCKED_BY_EXTENSION";
+
+/** Message to be shown in the preview when the data received from content script is invalid (not the right shape) */
+export const INVALID_PREVIEW_DATA_PAYLOAD_MESSAGE =
+  "Invalid preview data received from content script";
