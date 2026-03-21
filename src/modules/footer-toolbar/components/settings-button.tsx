@@ -26,7 +26,7 @@ export const SettingsButton = () => {
   return (
     <IconButton
       id="settings-button"
-      tooltip="View Settings"
+      tooltip={settingsPanelOpen ? "Close Settings" : "View Settings"}
       onClick={toggleSettingsPanel}
       icon={settingsPanelOpen ? CloseIcon : GearIcon}
       style={{

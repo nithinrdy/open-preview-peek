@@ -137,4 +137,5 @@ div[data-theme="dark"] {
 .react-tooltip {
   font-family: "Rajdhani", sans-serif !important;
   font-size: 14px !important;
+  z-index: 9999 !important;
 }
