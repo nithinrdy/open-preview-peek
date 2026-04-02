@@ -11,7 +11,7 @@ export const GithubButton = () => {
   return (
     <IconButton
       id="github-button"
-      tooltip="View on GitHub"
+      tooltip="Leave a star on GitHub :)"
       onClick={handleClick}
       icon={GithubIcon}
     />
