@@ -47,6 +47,16 @@ export const Settings = () => {
             </div>
           ))}
         </div>
+
+        <a
+          className="font-rajdhani text-content-secondary text-xs opacity-60 hover:opacity-100 transition-opacity"
+          href="https://github.com/nithinrdy/open-preview-peek/blob/main/THIRD-PARTY-NOTICES.txt"
+          target="_blank"
+          rel="noreferrer"
+          tabIndex={-1}
+        >
+          Third-party notices
+        </a>
       </div>
     </div>
   );
