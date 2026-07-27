@@ -16,14 +16,6 @@
     "48": "assets/48.png",
     "128": "assets/128.png"
   },
-  "browser_specific_settings": {
-    "gecko": {
-      "id": "@open_preview_peek.nithinrdy",
-      "data_collection_permissions": {
-        "required": ["none"]
-      }
-    }
-  },
   "background": {
     "service_worker": "scripts/background.js",
     "type": "module"
