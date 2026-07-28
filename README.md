@@ -51,18 +51,18 @@ URLs with either the `https` protocol, or with `http` as long as the host is
 
 ## Working with the source code
 
-1. You'll need [bun](https://bun.com/docs/installation).
-2. Install all dependencies (`bun install`).
+1. You'll need [yarn](https://yarnpkg.com/corepack).
+2. Install all dependencies (`yarn`).
 3. Build the popup and the scripts:
 
    ```bash
-   bun run build && bun run build:scripting
+   yarn build && yarn build:scripting
    ```
 
 4. Load/reload the generated `dist` folder into your browser as an unpacked
    extension.
 
-Run `bun run watch` to automatically rebuild the extension whenever you make
+Run `yarn watch` to automatically rebuild the extension whenever you make
 changes to the source code. Changes to the popup source should reflect after a
 quick close-and-reopen of the popup. Changes to the scripts may require step 4.
 to be repeated to work correctly.
